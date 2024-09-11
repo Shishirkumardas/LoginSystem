@@ -1,8 +1,10 @@
 package com.example.loginsystem.Controllers;
 
+import com.example.loginsystem.JwtTokenProvider;
 import com.example.loginsystem.Models.User;
 import com.example.loginsystem.Repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +16,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class AuthController {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    @Autowired
+    private AuthenticationManager authenticationManager;
+
+    @Autowired
+    private JwtTokenProvider jwtTokenProvider;
+
 
     @Autowired
     public AuthController(UserRepository userRepository, PasswordEncoder passwordEncoder) {
